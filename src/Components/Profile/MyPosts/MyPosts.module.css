@@ -1,0 +1,11 @@
+.content{
+  grid-area: c;
+  margin-top: 10px;
+}
+.content img{
+  width: 100%;
+}
+
+.item{
+  color: darkblue;
+}
