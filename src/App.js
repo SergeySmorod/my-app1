@@ -8,6 +8,8 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import News from "./Components/Navbar/News";
 import Music from "./Components/Navbar/Music";
 import Settings from "./Components/Navbar/Settings";
+
+
 const App = () => {
   return (
       <BrowserRouter>
