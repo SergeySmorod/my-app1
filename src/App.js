@@ -8,18 +8,19 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import News from "./Components/Navbar/News";
 import Music from "./Components/Navbar/Music";
 import Settings from "./Components/Navbar/Settings";
+import {addPost, updateNewPostText} from "./redux/state";
+const App = (props) => {
 
 
-const App = () => {
-  return (
+    return (
       <BrowserRouter>
       <div className='app-wrapper'>
         <Header/>
         <Navbar/>
           <div className='app-wrapper-content'>
               <Routes>
-                  <Route path="/profile" element={<Profile/>}/>
-                  <Route path="/dialogs/*" element={<Dialogs/>}/>
+                  <Route path="/profile" element={<Profile posts ={props.appState.profilePage.posts} addPost={props.addPost} updateNewPostText = {props.updateNewPostText}/>}/>
+                  <Route path="/dialogs/*" element={<Dialogs DialogsData={props.appState.dialogsPage.DialogsData} messagesData={props.appState.dialogsPage.messagesData}/>}/>
                   <Route path="/news" element={<News/>}/>
                   <Route path="/music" element={<Music/>}/>
                   <Route path="/settings" element={<Settings/>}/>
