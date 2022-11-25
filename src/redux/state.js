@@ -1,3 +1,4 @@
+import {type} from "@testing-library/user-event/dist/type";
 
 let store = {
     _state: {
@@ -40,6 +41,7 @@ let store = {
             id: '1'
         }
         this._state.profilePage.posts.push(newPost)
+        this._state.profilePage.newPostText = '';
         this._callsubscriber(this._state)
     },
     updateNewPostText (newText) {
@@ -50,5 +52,20 @@ let store = {
         this._callsubscriber = observer;
         window.store = store;
     },
+    dispatch(action){
+        if (action.type === 'ADD-POST'){
+            let newPost = {
+                message: this._state.profilePage.newPostText,
+                likes: '5',
+                id: '1'
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostText = '';
+            this._callsubscriber(this._state)
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
+            this._state.profilePage.newPostText = action.newText;
+            this._callsubscriber(this._state)
+        }
+}
 }
 export default store;
