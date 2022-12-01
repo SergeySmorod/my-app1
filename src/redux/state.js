@@ -1,6 +1,8 @@
 
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY';
+const SEND_MESSAGE = 'SEND_MESSAGE';
 let store = {
     _state: {
         profilePage: {
@@ -25,7 +27,8 @@ let store = {
                 {id: '3', message: 'I am fine'},
                 {id: '4', message: 'Yoo'},
                 {id: '5', message: 'Yoo'},
-            ]
+            ],
+            newMessageBody: ''
         }
 
     },
@@ -35,7 +38,7 @@ let store = {
     _callsubscriber ()  {
         console.log('hfjfjhwk')
     },
-    addPost (postMessage) {
+    addPost () {
         let newPost = {
             message: this._state.profilePage.newPostText,
             likes: '5',
@@ -66,10 +69,24 @@ let store = {
         } else if (action.type === UPDATE_NEW_POST_TEXT){
             this._state.profilePage.newPostText = action.newText;
             this._callsubscriber(this._state)
+        }else if (action.type === UPDATE_NEW_MESSAGE_BODY){
+             this._state.dialogsPage.newMessageBody =action.body;
+             this._callsubscriber(this._state)
+        }else if (action.type === SEND_MESSAGE){
+            let body = this._state.dialogsPage.newMessageBody;
+
+            this._state.dialogsPage.messagesData.push({id: '6', message: body})
+            this._state.dialogsPage.newMessageBody = '';
+            this._callsubscriber(this._state)
+
         }
 }
 }
 export const addPostActionCreator = () =>({type: ADD_POST})
-export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
+export const updateNewPostTextActionCreator = (text) =>
+    ({type: UPDATE_NEW_POST_TEXT, newText: text})
 
+export const sendMessageCreator = () =>({type: SEND_MESSAGE})
+export const updateNewMessageBodyCreator =
+    (body) => ({type: UPDATE_NEW_MESSAGE_BODY, body: body})
 export default store;
