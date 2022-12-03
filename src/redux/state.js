@@ -1,5 +1,6 @@
 import profileReducer from "./profile-reduser";
 import dialogsReducer from "./dialogs-reduser";
+import sidebarReducer from "./sidebar-reduser";
 //const ADD_POST = 'ADD-POST';
 //const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 //const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY';
@@ -31,7 +32,7 @@ let store = {
             ],
             newMessageBody: ''
         },
-        sidebar: {}
+        sideBar: {}
     },
     getState () {
         return this._state;
@@ -60,7 +61,7 @@ let store = {
     dispatch(action){
         this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
-        //this._state.sideBar = sidebarReducer(this._state.sidebar, action);
+        this._state.sideBar = sidebarReducer(this._state.sideBar, action);
          this._callsubscriber(this._state)
         // if (action.type === ADD_POST){
         //     let newPost = {
