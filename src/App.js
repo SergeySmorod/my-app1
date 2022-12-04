@@ -8,6 +8,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import News from "./Components/Navbar/News";
 import Music from "./Components/Navbar/Music";
 import Settings from "./Components/Navbar/Settings";
+import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 
 const App = (props) => {
 
@@ -24,9 +25,7 @@ const App = (props) => {
                                                            dispatch={props.dispatch}
 
                                                           />}/>
-                  <Route path="/dialogs/*" element={<Dialogs DialogsData={props.appState.dialogsPage.DialogsData}
-                                                             messagesData={props.appState.dialogsPage.messagesData}
-                                                             store={props.store}/>}/>
+                  <Route path="/dialogs/*" element={<DialogsContainer store={props.store}/>}/>
                   <Route path="/news" element={<News/>}/>
                   <Route path="/music" element={<Music/>}/>
                   <Route path="/settings" element={<Settings/>}/>
