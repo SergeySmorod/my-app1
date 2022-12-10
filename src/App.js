@@ -11,7 +11,7 @@ import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 
 const App = () => {
 
-    debugger
+
     return (
       <BrowserRouter>
       <div className='app-wrapper'>
